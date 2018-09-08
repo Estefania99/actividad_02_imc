@@ -1,0 +1,131 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controllers;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import models.modelo;
+import views.VistaImc;
+
+/**
+ *
+ * @author fanny
+ */
+public class controles implements ActionListener{
+        modelo modelo;
+        VistaImc VistaImc ;
+     public controles(modelo  modelo ,VistaImc  VistaImc ){
+        this.modelo = modelo;
+        this.VistaImc =VistaImc;
+        this.VistaImc.jb_calcular.addActionListener(this);
+        this.VistaImc.jb_limpiar.addActionListener(this);
+        initComponets();
+    }
+
+    @Override
+    
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==VistaImc.jb_calcular){
+            jb_calcular_action_performed();
+            
+        }
+        else if(e.getSource()==VistaImc.jb_limpiar){
+            jb_limpiar_action_performed();
+        }
+    }
+
+    private void jb_calcular_action_performed() {
+        VistaImc.setVisible(true);
+         try{
+         float altura = 0.0f;
+         float peso = 0.0f;
+         float Imc = 0.0f;
+         String sexo;
+         altura = Float.parseFloat(this.VistaImc.jtf_altura.getText());
+         peso = Float.parseFloat(this.VistaImc.jtf_peso.getText());
+         Imc = peso / (altura * altura);
+         this.VistaImc.jtf_imc.setText(String.valueOf(Imc));
+         Imc = Float.parseFloat(this.VistaImc.jtf_imc.getText());
+                 
+        if (peso == 0 || altura ==0){
+           JOptionPane.showMessageDialog(null,"El 0 no se puede dividir");
+        }
+        else if (peso < 0 || altura < 0 ){
+           JOptionPane.showMessageDialog(null,"No se aceptan numeros negativos");
+        }
+        else if(altura >3.0){
+           JOptionPane.showMessageDialog(null,"ingrese datos reales ");
+        }
+        else if(peso <=16 || peso>=100){
+         JOptionPane.showMessageDialog(null,"Ingrese datos reales");
+     }
+                
+        switch(VistaImc.jcb_sexo.getSelectedIndex()){
+            case 0:
+                sexo ="Mujer";
+                if(Imc <= 16){
+                this.VistaImc.jtf_diagnostico.setText(String.valueOf("Desnutrición"+"Pronto! Acude a un médico"));  
+                }
+                else if(Imc >=16 && Imc <=18.4){
+                  this.VistaImc.jtf_diagnostico.setText(String.valueOf("BajoPeso"+"Alimentate Mejor"));    
+                }
+                else if(Imc >=18.5 && Imc <= 24.9){
+                  this.VistaImc.jtf_diagnostico.setText(String.valueOf("Normal"+"!FELICIDADES¡"));   
+                }
+                else if(Imc >=25 && Imc <= 29.9){
+                  this.VistaImc.jtf_diagnostico.setText(String.valueOf("SobrePeso"+"!Dieta,ejercicio y medicina¡"));   
+                }
+                else if(Imc >=30 && Imc <= 34.9){
+                this.VistaImc.jtf_diagnostico.setText(String.valueOf("Obesidad"+"Medicinas o cirugia"));
+            }
+                else if(Imc >=35 && Imc <= 39.9){
+                this.VistaImc.jtf_diagnostico.setText(String.valueOf("Obesidad Marcada"));
+            }
+             break;
+              case 1:
+                sexo ="Hombre";
+                if(Imc <= 17){
+                this.VistaImc.jtf_diagnostico.setText(String.valueOf("Desnutrición"+"Pronto! Acude a un médico"));  
+                }
+                else if(Imc >=17 && Imc <=19.4){
+                  this.VistaImc.jtf_diagnostico.setText(String.valueOf("BajoPeso"+"Alimentate Mejor"));    
+                }
+                else if(Imc >=19.5 && Imc <= 25.9){
+                  this.VistaImc.jtf_diagnostico.setText(String.valueOf("Normal"+"!FELICIDADES¡"));   
+                }
+                else if(Imc >=26 && Imc <= 30.9){
+                  this.VistaImc.jtf_diagnostico.setText(String.valueOf("SobrePeso"+"!Dieta,ejercicio y medicina¡"));   
+                }
+                else if(Imc >=31 && Imc <= 35.9){
+                this.VistaImc.jtf_diagnostico.setText(String.valueOf("Obesidad"+"Medicinas o cirugia"));
+            }
+                else if(Imc >=36 && Imc <= 40.9){
+                this.VistaImc.jtf_diagnostico.setText(String.valueOf("Obesidad Marcada"));
+            }
+             break; 
+        }  
+     }
+     catch(Exception e){
+        JOptionPane.showMessageDialog(null,"Error solo se aceptan valores numericos"); 
+    }
+}
+    private void jb_limpiar_action_performed() {
+        VistaImc.setVisible(true);
+         float altura = 0.0f;
+         float peso = 0.0f;
+         float Imc = 0.0f;
+         String diagnostico = "";
+        this. VistaImc.jtf_altura.setText(String.valueOf(altura));
+        this. VistaImc.jtf_peso.setText(String.valueOf(peso));
+        this. VistaImc.jtf_imc.setText(String.valueOf(Imc));
+        this. VistaImc.jtf_diagnostico.setText(String.valueOf(diagnostico));
+    }
+
+    private void initComponets() {
+        VistaImc.setVisible(true);
+    }
+
+}
