@@ -1,0 +1,45 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package models;
+
+/**
+ *
+ * @author fanny
+ */
+public class modelo {
+    private float altura=0.0f;
+    private float peso=0.0f;
+    private float Imc=0.0f;
+    private String sexo;
+    
+    public float getAltura(){
+            return altura;
+}
+    public void setAltura(float altura){
+        this.altura=altura;
+        
+    }
+      public float getPeso(){
+            return peso;
+}
+    public void setPeso(float peso){
+        this.peso=peso;
+        
+    }
+         public float getImc(){
+            return Imc;
+}
+    public void setImc(float Imc){
+        this.Imc=Imc;
+        
+    }
+       public String getSexo(){
+            return sexo;
+}
+    public void setSexo(String sexo){
+          this.sexo=sexo;
+    }
+}
