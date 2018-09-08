@@ -1,0 +1,23 @@
+package main;
+    import controllers.controles;
+    import models.modelo;
+    import views.VistaImc;
+
+/**
+ *
+ * @author fanny
+ */
+public class Main {
+
+    
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       modelo modelo = new modelo();
+       VistaImc VistaImc = new VistaImc();
+       controles controles = new controles(modelo, VistaImc);
+    }
+    
+}
